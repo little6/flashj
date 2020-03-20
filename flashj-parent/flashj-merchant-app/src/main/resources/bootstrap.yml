@@ -1,0 +1,41 @@
+server:
+  port: 9001
+
+nacos:
+  server:
+    addr: 127.0.0.1:8848
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.server.addr}
+        cluster-name: DEFAULT
+        namespace: 99593676-fcda-498f-ab3a-209af786bf6b
+      config:
+        server-addr: ${nacos.server.addr}
+        file-extension: yaml
+        namespace: 99593676-fcda-498f-ab3a-209af786bf6b
+        group: FLASHJ_GROUP
+        extension-configs:
+          - refresh: true
+            data-id: flashj-common.yaml
+            group: COMMON_GROUP
+  application:
+    name: flashj-merchant-app
+  main:
+    allow-bean-definition-overriding: true
+  #SpringMVC上传文件配置
+  servlet:
+    multipart:
+      #默认支持文件上传.
+      enabled: true
+      #支持文件写入磁盘.
+      file-size-threshold: 0
+      # 上传文件的临时目录
+      location: ./tmp
+      # 最大支持文件大小
+      max-file-size: 1MB
+      # 最大支持请求大小
+      max-request-size: 30MB
+logging:
+  config: classpath:log4j2.xml
