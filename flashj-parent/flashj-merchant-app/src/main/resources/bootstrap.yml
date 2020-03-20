@@ -22,6 +22,14 @@ spring:
             group: COMMON_GROUP
   application:
     name: flashj-merchant-app
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql:///flashj_merchant_service?useSSL=false&serverTimezone=GMT%2B8
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 4
   main:
     allow-bean-definition-overriding: true
   #SpringMVC上传文件配置

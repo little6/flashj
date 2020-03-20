@@ -2,20 +2,27 @@ package com.flashj.merchant.service.convert;
 
 import com.flashj.merchant.service.dto.AppDTO;
 import com.flashj.merchant.service.entity.App;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper
-public interface AppCovert {
+public class AppCovert {
 
-    AppCovert INSTANCE = Mappers.getMapper(AppCovert.class);
+    public static AppDTO entity2dto(App entity) {
+        AppDTO appDTO = new AppDTO();
+        BeanUtils.copyProperties(entity, appDTO);
+        return appDTO;
+    }
 
-    AppDTO entity2dto(App entity);
+    public static App dto2entity(AppDTO dto) {
+        App app = new App();
+        BeanUtils.copyProperties(dto, app);
+        return app;
+    }
 
-    App dto2entity(AppDTO dto);
-
-    List<AppDTO> listentity2dto(List<App> app);
+    public static List<AppDTO> listentity2dto(List<App> apps) {
+        return apps.parallelStream().map(AppCovert::entity2dto).collect(Collectors.toList());
+    }
 
 }

@@ -2,7 +2,9 @@ package com.flashj.merchant;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -12,8 +14,9 @@ import org.springframework.web.client.RestTemplate;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {RedisAutoConfiguration.class})
 @EnableDiscoveryClient
+@EnableFeignClients
 public class MerchantBootApp {
     public static void main(String[] args) {
         SpringApplication.run(MerchantBootApp.class, args);

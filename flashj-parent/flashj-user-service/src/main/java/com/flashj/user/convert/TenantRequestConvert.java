@@ -2,15 +2,19 @@ package com.flashj.user.convert;
 
 import com.flashj.user.dto.tenant.CreateTenantRequestDTO;
 import com.flashj.user.entity.Tenant;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
-@Mapper
-public interface TenantRequestConvert {
+public class TenantRequestConvert {
 
-    TenantRequestConvert INSTANCE = Mappers.getMapper(TenantRequestConvert.class);
+    public static CreateTenantRequestDTO entity2dto(Tenant entity) {
+        CreateTenantRequestDTO dto = new CreateTenantRequestDTO();
+        BeanUtils.copyProperties(entity, dto);
+        return dto;
+    }
 
-    CreateTenantRequestDTO entity2dto(Tenant entity);
-
-    Tenant dto2entity(CreateTenantRequestDTO dto);
+    public static Tenant dto2entity(CreateTenantRequestDTO dto) {
+        Tenant tenant = new Tenant();
+        BeanUtils.copyProperties(dto, tenant);
+        return tenant;
+    }
 }

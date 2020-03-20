@@ -53,8 +53,6 @@ public interface AuthorizationService {
 	PrivilegeTreeDTO queryPrivilegeTree(Long tenantId, String[] roleCodes) throws BusinessException;
 
 
-
-
 	//////////////////////////////////////////////////角色、权限///////////////////////////////////////////////////
 	/**
 	 * 创建租户内角色（不包含权限）

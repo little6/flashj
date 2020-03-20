@@ -2,19 +2,26 @@ package com.flashj.merchant.service.convert;
 
 import com.flashj.merchant.service.dto.StoreDTO;
 import com.flashj.merchant.service.entity.Store;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper
-public interface StoreConvert {
+public class StoreConvert {
 
-    StoreConvert INSTANCE = Mappers.getMapper(StoreConvert.class);
+    public static StoreDTO entity2dto(Store entity) {
+        StoreDTO storeDTO = new StoreDTO();
+        BeanUtils.copyProperties(entity, storeDTO);
+        return storeDTO;
+    }
 
-    StoreDTO entity2dto(Store entity);
+    public static Store dto2entity(StoreDTO dto) {
+        Store store = new Store();
+        BeanUtils.copyProperties(dto, store);
+        return store;
+    }
 
-    Store dto2entity(StoreDTO dto);
-
-    List<StoreDTO> listentity2dto(List<Store> staff);
+    public static List<StoreDTO> listentity2dto(List<Store> stores) {
+        return stores.parallelStream().map(StoreConvert::entity2dto).collect(Collectors.toList());
+    }
 }

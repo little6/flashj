@@ -59,14 +59,14 @@ public class AppServiceImpl implements AppService {
         //2）生成应用ID
         String appId = UUID.randomUUID().toString();
 
-        App entity = AppCovert.INSTANCE.dto2entity(appDTO);
+        App entity = AppCovert.dto2entity(appDTO);
         entity.setAppId(appId);//应用id
         entity.setMerchantId(merchantId);//商户id
 
         //调用 appMapper向app表插入数据
         appMapper.insert(entity);
 
-        return AppCovert.INSTANCE.entity2dto(entity);
+        return AppCovert.entity2dto(entity);
     }
 
     /**
@@ -79,7 +79,7 @@ public class AppServiceImpl implements AppService {
     @Override
     public List<AppDTO> queryAppByMerchant(Long merchantId) throws BusinessException {
         List<App> apps = appMapper.selectList(new LambdaQueryWrapper<App>().eq(App::getMerchantId, merchantId));
-        return AppCovert.INSTANCE.listentity2dto(apps);
+        return AppCovert.listentity2dto(apps);
     }
 
     /**
@@ -92,7 +92,7 @@ public class AppServiceImpl implements AppService {
     @Override
     public AppDTO getAppById(String appId) throws BusinessException {
         App app = appMapper.selectOne(new LambdaQueryWrapper<App>().eq(App::getAppId, appId));
-        return AppCovert.INSTANCE.entity2dto(app);
+        return AppCovert.entity2dto(app);
     }
 
     /**

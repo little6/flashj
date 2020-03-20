@@ -2,46 +2,52 @@ package com.flashj.merchant.service.convert;
 
 import com.flashj.merchant.service.dto.MerchantDTO;
 import com.flashj.merchant.service.entity.Merchant;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper //对象属性的映射
-public interface MerchantConvert {
-
-    //转换类实例
-    MerchantConvert INSTANCE = Mappers.getMapper(MerchantConvert.class);
+public class MerchantConvert {
 
     //把dto转换成entity
-    Merchant dto2entity(MerchantDTO merchantDTO);
+    public static Merchant dto2entity(MerchantDTO merchantDTO) {
+        Merchant merchant = new Merchant();
+        BeanUtils.copyProperties(merchantDTO, merchant);
+        return merchant;
+    }
 
     //把entity转换成dto
-    MerchantDTO entity2dto(Merchant merchant);
+    public static MerchantDTO entity2dto(Merchant merchant) {
+        MerchantDTO merchantDTO = new MerchantDTO();
+        BeanUtils.copyProperties(merchant, merchantDTO);
+        return merchantDTO;
+    }
 
-    //list之间也可以转换，很entity的List转成MerchantDTO list
-    List<MerchantDTO> entityList2dtoList(List<Merchant> merchants);
+    //list之间也可以转换，将entity的List转成MerchantDTO list
+    public static List<MerchantDTO> entityList2dtoList(List<Merchant> merchants) {
+        return merchants.parallelStream().map(MerchantConvert::entity2dto).collect(Collectors.toList());
+    }
 
 
     public static void main(String[] args) {
         //将dto转成entity
-        Merchant merchant  =new Merchant();
+        Merchant merchant = new Merchant();
         merchant.setUsername("测试");
         merchant.setMobile("123456");
-        MerchantDTO merchantDTO = MerchantConvert.INSTANCE.entity2dto(merchant);
+        MerchantDTO merchantDTO = MerchantConvert.entity2dto(merchant);
         System.out.println(merchantDTO);
 
         //将entity转成dto
         merchantDTO.setMerchantName("商户名称");
-        Merchant merchant1 = MerchantConvert.INSTANCE.dto2entity(merchantDTO);
+        Merchant merchant1 = MerchantConvert.dto2entity(merchantDTO);
         System.out.println(merchant1);
 
         //定义的list
-        List entityList = new ArrayList();
+        List<Merchant> entityList = new ArrayList<>();
         entityList.add(merchant);
         //将lIST转成包含dto的list
-        List list = MerchantConvert.INSTANCE.entityList2dtoList(entityList);
+        List<MerchantDTO> list = MerchantConvert.entityList2dtoList(entityList);
         System.out.println(list);
 
     }

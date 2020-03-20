@@ -8,14 +8,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 应用信息
- * </p>
- *
- *
- * @since 2019-08-13
- */
 @Data
 @TableName("resource_application")
 public class ResourceApplication implements Serializable {

@@ -32,7 +32,4 @@ public class PageRequestParams {
 	public void setLimit(long limit) {
 		this.limit = limit;
 	}
-	
-	
-	
 }

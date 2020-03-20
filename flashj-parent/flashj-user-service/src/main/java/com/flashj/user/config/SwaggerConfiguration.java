@@ -23,7 +23,7 @@ public class SwaggerConfiguration {
 				.apiInfo(buildApiInfo())
 				.select()
 				// 要扫描的API(Controller)基础包
-				.apis(RequestHandlerSelectors.basePackage("com.shanjupay.user.controller"))
+				.apis(RequestHandlerSelectors.basePackage("com.flashj.user.controller"))
 				.paths(PathSelectors.any())
 				.build();
 	}
@@ -35,7 +35,7 @@ public class SwaggerConfiguration {
 	 * @methodName: buildApiInfo
 	 */
 	private ApiInfo buildApiInfo() {
-		Contact contact = new Contact("开发者","","");
+		Contact contact = new Contact("开发者","","mic816@gmail.com");
 		return new ApiInfoBuilder()
 				.title("API文档")
 				.description("")

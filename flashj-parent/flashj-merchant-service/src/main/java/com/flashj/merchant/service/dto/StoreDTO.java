@@ -24,7 +24,7 @@ public class StoreDTO implements Serializable {
     @ApiModelProperty(value = "门店编号")
     private Long storeNumber;
 
-    @ApiModelProperty(value = "所属商户")
+    @ApiModelProperty(value = "所属商户id")
     private Long merchantId;
 
     @ApiModelProperty(value = "父门店")

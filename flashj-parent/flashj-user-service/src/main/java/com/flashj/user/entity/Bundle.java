@@ -8,14 +8,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 
- * </p>
- *
- *
- * @since 2019-08-13
- */
 @Data
 @TableName("bundle")
 public class Bundle implements Serializable {

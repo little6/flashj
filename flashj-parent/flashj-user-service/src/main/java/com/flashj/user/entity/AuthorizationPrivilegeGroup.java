@@ -8,14 +8,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 权限组
- * </p>
- *
- *
- * @since 2019-08-13
- */
+
 @Data
 @TableName("authorization_privilege_group")
 public class AuthorizationPrivilegeGroup  implements Serializable {

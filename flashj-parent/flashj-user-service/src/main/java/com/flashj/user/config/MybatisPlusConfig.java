@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * </p>
  */
 @Configuration
-@MapperScan("com.shanjupay.**.mapper")
+@MapperScan("com.flashj.user.mapper")
 public class MybatisPlusConfig {
 
 	/**

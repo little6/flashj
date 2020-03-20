@@ -2,18 +2,25 @@ package com.flashj.user.convert;
 
 import com.flashj.user.dto.authorization.PrivilegeDTO;
 import com.flashj.user.entity.AuthorizationPrivilege;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper
-public interface AuthorizationPrivilegeConvert {
-    AuthorizationPrivilegeConvert INSTANCE = Mappers.getMapper(AuthorizationPrivilegeConvert.class);
+public class AuthorizationPrivilegeConvert {
+    public static PrivilegeDTO entity2dto(AuthorizationPrivilege entity){
+        PrivilegeDTO privilegeDTO=new PrivilegeDTO();
+        BeanUtils.copyProperties(entity,privilegeDTO);
+        return privilegeDTO;
+    }
 
-    PrivilegeDTO entity2dto(AuthorizationPrivilege entity);
+    public static AuthorizationPrivilege dto2entity(PrivilegeDTO dto){
+        AuthorizationPrivilege authorizationPrivilege=new AuthorizationPrivilege();
+        BeanUtils.copyProperties(dto,authorizationPrivilege);
+        return authorizationPrivilege;
+    }
 
-    AuthorizationPrivilege dto2entity(PrivilegeDTO dto);
-
-    List<PrivilegeDTO> entitylist2dto(List<AuthorizationPrivilege> authorizationRole);
+    public static List<PrivilegeDTO> entitylist2dto(List<AuthorizationPrivilege> authorizationPrivileges){
+        return authorizationPrivileges.parallelStream().map(AuthorizationPrivilegeConvert::entity2dto).collect(Collectors.toList());
+    }
 }

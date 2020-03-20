@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @author lybbo
 */
 @Configuration
-@MapperScan("com.flashj.**.mapper")
+@MapperScan("com.flashj.merchant.service.mapper")
 public class MyBatisPlusConfig {
     /**
      * 分页插件，自动识别数据库类型

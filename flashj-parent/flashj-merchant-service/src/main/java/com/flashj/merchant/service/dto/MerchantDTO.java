@@ -7,7 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@ApiModel(value="MerchantDTO", description="")
+@ApiModel(value="MerchantDTO", description="MerchantDTO对象")
 public class MerchantDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;

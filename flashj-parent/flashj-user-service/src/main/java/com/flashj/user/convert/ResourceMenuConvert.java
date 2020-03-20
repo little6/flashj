@@ -1,24 +1,32 @@
 package com.flashj.user.convert;
 
-
 import com.flashj.user.dto.menu.MenuDTO;
 import com.flashj.user.entity.ResourceMenu;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper
-public interface ResourceMenuConvert {
+public class ResourceMenuConvert {
 
-    ResourceMenuConvert INSTANCE = Mappers.getMapper(ResourceMenuConvert.class);
+    public static MenuDTO entity2dto(ResourceMenu entity) {
+        MenuDTO menuDTO = new MenuDTO();
+        BeanUtils.copyProperties(entity, menuDTO);
+        return menuDTO;
+    }
 
-    MenuDTO entity2dto(ResourceMenu entity);
+    public static ResourceMenu dto2entity(MenuDTO dto) {
+        ResourceMenu resourceMenu = new ResourceMenu();
+        BeanUtils.copyProperties(dto, resourceMenu);
+        return resourceMenu;
+    }
 
-    ResourceMenu dto2entity(MenuDTO dto);
+    public static List<MenuDTO> entitylist2dto(List<ResourceMenu> resourceMenus) {
+        return resourceMenus.stream().map(ResourceMenuConvert::entity2dto).collect(Collectors.toList());
+    }
 
-    List<MenuDTO> entitylist2dto(List<ResourceMenu> resourceMenu);
-
-    List<ResourceMenu> dtolist2entity(List<MenuDTO> menuDTO);
+    public static List<ResourceMenu> dtolist2entity(List<MenuDTO> menuDTOs) {
+        return menuDTOs.stream().map(ResourceMenuConvert::dto2entity).collect(Collectors.toList());
+    }
 
 }

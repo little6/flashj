@@ -8,14 +8,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 角色-权限关系
- * </p>
- *
- *
- * @since 2019-08-13
- */
 @Data
 @TableName("authorization_role_privilege")
 public class AuthorizationRolePrivilege implements Serializable {

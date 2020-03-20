@@ -2,6 +2,7 @@ package com.flashj.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
@@ -11,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /*
 @author lybbo
 */
-@SpringBootApplication
+@SpringBootApplication(exclude = RedisAutoConfiguration.class)
 @EnableDiscoveryClient
 @EnableSwagger2
 public class UserBootApp {

@@ -12,5 +12,4 @@ public class LoginUser {
 	private String clientId;
 	private String username;
 	private Long tenantId;
-
 }

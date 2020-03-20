@@ -8,14 +8,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 
- * </p>
- *
- *
- * @since 2019-07-15
- */
+
 @Data
 @TableName("tenant_account")
 public class TenantAccount implements Serializable {

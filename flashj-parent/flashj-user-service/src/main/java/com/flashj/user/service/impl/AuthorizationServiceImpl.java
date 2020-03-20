@@ -102,7 +102,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
             List<Long> roleIds = roles.stream().map(AuthorizationRole::getId).collect(Collectors.toList());
             privileges = privilegeMapper.selectPrivilegeByRole(roleIds);
         }
-        List<PrivilegeDTO> privilegeDTOS = AuthorizationPrivilegeConvert.INSTANCE.entitylist2dto(privileges);
+        List<PrivilegeDTO> privilegeDTOS = AuthorizationPrivilegeConvert.entitylist2dto(privileges);
         return privilegeDTOS;
     }
 
@@ -116,7 +116,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     public List<PrivilegeDTO> queryPrivilegeByGroupId(Long privilegeGroupId) {
         List<AuthorizationPrivilege> privilegeList = privilegeMapper.selectList(new QueryWrapper<AuthorizationPrivilege>().lambda()
                 .eq(AuthorizationPrivilege::getPrivilegeGroupId, privilegeGroupId));
-        List<PrivilegeDTO> privilegeDTOS = AuthorizationPrivilegeConvert.INSTANCE.entitylist2dto(privilegeList);
+        List<PrivilegeDTO> privilegeDTOS = AuthorizationPrivilegeConvert.entitylist2dto(privilegeList);
         return privilegeDTOS;
     }
 
@@ -221,7 +221,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         if (isExistRoleCode(tenantId, code)) {
             throw new BusinessException(CommonErrorCode.E_110002);
         }
-        AuthorizationRole entity = AuthorizationRoleConvert.INSTANCE.dto2entity(role);
+        AuthorizationRole entity = AuthorizationRoleConvert.dto2entity(role);
         roleMapper.insert(entity);
     }
 
@@ -278,7 +278,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         //UpdateWrapper<AuthorizationRole> uw = new UpdateWrapper<>();
         //uw.lambda().eq(AuthorizationRole::getId,role.getId()).set(AuthorizationRole::getName,role.getName());
         //roleMapper.update(null,uw);
-        AuthorizationRole entity = AuthorizationRoleConvert.INSTANCE.dto2entity(role);
+        AuthorizationRole entity = AuthorizationRoleConvert.dto2entity(role);
         roleMapper.updateById(entity);
     }
 
@@ -333,7 +333,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         QueryWrapper<AuthorizationRole> qw = new QueryWrapper<>();
         qw.lambda().eq(AuthorizationRole::getTenantId, tenantId);
         List<AuthorizationRole> authorizationRoles = roleMapper.selectList(qw);
-        List<RoleDTO> roleDTOS = AuthorizationRoleConvert.INSTANCE.entitylist2dto(authorizationRoles);
+        List<RoleDTO> roleDTOS = AuthorizationRoleConvert.entitylist2dto(authorizationRoles);
         return roleDTOS;
     }
 
@@ -350,7 +350,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         List<AuthorizationRole> authorizationRoles = roleMapper.selectList(new QueryWrapper<AuthorizationRole>().lambda()
                 .eq(AuthorizationRole::getTenantId, tenantId)
                 .in(AuthorizationRole::getCode, codes));
-        List<RoleDTO> roleDTOS = AuthorizationRoleConvert.INSTANCE.entitylist2dto(authorizationRoles);
+        List<RoleDTO> roleDTOS = AuthorizationRoleConvert.entitylist2dto(authorizationRoles);
         return roleDTOS;
     }
 
@@ -370,7 +370,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
             throw new BusinessException(CommonErrorCode.E_110003);
         }
         Long id = role.getId();
-        RoleDTO roleDTO = AuthorizationRoleConvert.INSTANCE.entity2dto(role);
+        RoleDTO roleDTO = AuthorizationRoleConvert.entity2dto(role);
         roleDTO.setPrivilegeCodes(roleMapper.selectPrivilegeByRole(id));
 
         return roleDTO;
@@ -439,14 +439,14 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         List<AccountRole> accountRoles = accountRoleMapper.selectList(new QueryWrapper<AccountRole>().lambda()
                 .eq(AccountRole::getUsername, username).eq(AccountRole::getTenantId, tenantId)
                 .in(AccountRole::getRoleCode, roleList));
-        return AccountRoleConvert.INSTANCE.listentity2dto(accountRoles);
+        return AccountRoleConvert.listentity2dto(accountRoles);
     }
 
     @Override
     public List<AccountRoleDTO> queryAccountRole(String username, Long tenantId) {
         List<AccountRole> accountRoles = accountRoleMapper.selectList(new QueryWrapper<AccountRole>().lambda()
                 .eq(AccountRole::getUsername, username).eq(AccountRole::getTenantId, tenantId));
-        return AccountRoleConvert.INSTANCE.listentity2dto(accountRoles);
+        return AccountRoleConvert.listentity2dto(accountRoles);
     }
 
     @Override
@@ -485,7 +485,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         // 执行查询
         IPage<AuthorizationRole> roleIPage = roleMapper.selectPage(page, qw);
         // entity List转DTO List
-        List<RoleDTO> roleList = AuthorizationRoleConvert.INSTANCE.entitylist2dto(roleIPage.getRecords());
+        List<RoleDTO> roleList = AuthorizationRoleConvert.entitylist2dto(roleIPage.getRecords());
         // 封装结果集
         return new PageVO<>(roleList, roleIPage.getTotal(), pageNo, pageSize);
     }

@@ -2,34 +2,31 @@ package com.flashj.user.convert;
 
 import com.flashj.user.dto.authorization.RoleDTO;
 import com.flashj.user.entity.AuthorizationRole;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper
-public interface AuthorizationRoleConvert {
+public class AuthorizationRoleConvert {
 
-    AuthorizationRoleConvert INSTANCE = Mappers.getMapper(AuthorizationRoleConvert.class);
+    public static RoleDTO entity2dto(AuthorizationRole entity) {
+        RoleDTO roleDTO = new RoleDTO();
+        BeanUtils.copyProperties(entity, roleDTO);
+        return roleDTO;
+    }
 
-    @Mappings({
-            @Mapping(target="name",source = "name"),
-            @Mapping(target="code",source = "code"),
-            @Mapping(target="tenantId",source = "tenantId")}
-    )
-    RoleDTO entity2dto(AuthorizationRole entity);
+    public static AuthorizationRole dto2entity(RoleDTO dto) {
+        AuthorizationRole authorizationRole = new AuthorizationRole();
+        BeanUtils.copyProperties(dto, authorizationRole);
+        return authorizationRole;
+    }
 
-    @Mappings({
-            @Mapping(target="name",source = "name"),
-            @Mapping(target="code",source = "code"),
-            @Mapping(target="tenantId",source = "tenantId")}
-    )
-    AuthorizationRole dto2entity(RoleDTO dto);
+    public static List<RoleDTO> entitylist2dto(List<AuthorizationRole> authorizationRoles) {
+        return authorizationRoles.parallelStream().map(AuthorizationRoleConvert::entity2dto).collect(Collectors.toList());
+    }
 
-    List<RoleDTO> entitylist2dto(List<AuthorizationRole> authorizationRole);
-
-    List<AuthorizationRole> dtolist2entity(List<RoleDTO> roleDTOS);
+    public static List<AuthorizationRole> dtolist2entity(List<RoleDTO> roleDTOS) {
+        return roleDTOS.parallelStream().map(AuthorizationRoleConvert::dto2entity).collect(Collectors.toList());
+    }
 
 }

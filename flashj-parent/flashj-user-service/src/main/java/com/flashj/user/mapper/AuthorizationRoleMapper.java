@@ -15,8 +15,6 @@ import java.util.List;
  * 角色信息 Mapper 接口
  * </p>
  *
- *
- * @since 2019-08-13
  */
 @Repository
 public interface AuthorizationRoleMapper extends BaseMapper<AuthorizationRole> {

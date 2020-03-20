@@ -44,7 +44,7 @@ public class ResourceServiceImpl implements ResourceService {
      */
     @Override
     public void createApplication(ApplicationDTO application) {
-        ResourceApplication entity = ResourceApplicationConvert.INSTANCE.dto2entity(application);
+        ResourceApplication entity = ResourceApplicationConvert.dto2entity(application);
         applicationMapper.insert(entity);
     }
 
@@ -56,7 +56,7 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public void modifyApplication(ApplicationDTO application) {
         Assert.notNull(application,"对象不能为空");
-        ResourceApplication entity = ResourceApplicationConvert.INSTANCE.dto2entity(application);
+        ResourceApplication entity = ResourceApplicationConvert.dto2entity(application);
         applicationMapper.updateById(entity);
     }
 
@@ -85,7 +85,7 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public ApplicationDTO queryApplication(String applicationCode) {
         ResourceApplication application = applicationMapper.selectOne(new QueryWrapper<ResourceApplication>().lambda().eq(ResourceApplication::getCode, applicationCode));
-        ApplicationDTO applicationDTO = ResourceApplicationConvert.INSTANCE.entity2dto(application);
+        ApplicationDTO applicationDTO = ResourceApplicationConvert.entity2dto(application);
         return applicationDTO;
     }
 

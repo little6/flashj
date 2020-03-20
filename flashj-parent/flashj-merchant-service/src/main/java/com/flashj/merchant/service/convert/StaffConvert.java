@@ -2,20 +2,27 @@ package com.flashj.merchant.service.convert;
 
 import com.flashj.merchant.service.dto.StaffDTO;
 import com.flashj.merchant.service.entity.Staff;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper
-public interface StaffConvert {
+public class StaffConvert {
 
-    StaffConvert INSTANCE = Mappers.getMapper(StaffConvert.class);
+    public static StaffDTO entity2dto(Staff entity){
+        StaffDTO staffDTO=new StaffDTO();
+        BeanUtils.copyProperties(entity,staffDTO);
+        return staffDTO;
+    }
 
-    StaffDTO entity2dto(Staff entity);
+    public static Staff dto2entity(StaffDTO dto){
+        Staff staff=new Staff();
+        BeanUtils.copyProperties(dto,staff);
+        return staff;
+    }
 
-    Staff dto2entity(StaffDTO dto);
-
-    List<StaffDTO> listentity2dto(List<Staff> staff);
+    public static List<StaffDTO> listentity2dto(List<Staff> staffs){
+        return staffs.parallelStream().map(StaffConvert::entity2dto).collect(Collectors.toList());
+    }
 
 }

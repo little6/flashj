@@ -1,8 +1,8 @@
 package com.flashj.merchant.service.mapper;
 
-import com.flashj.merchant.service.entity.App;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.springframework.stereotype.Repository;
+import com.flashj.merchant.service.entity.App;
+import org.mapstruct.Mapper;
 
 /**
  * <p>
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author lybbo
  */
-@Repository
+@Mapper
 public interface AppMapper extends BaseMapper<App> {
 
 }

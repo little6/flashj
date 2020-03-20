@@ -2,21 +2,25 @@ package com.flashj.merchant.convert;
 
 import com.flashj.merchant.service.dto.MerchantDTO;
 import com.flashj.merchant.vo.MerchantRegisterVO;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
 /**
  * 将商户注册vo和dto进行转换
- * Created by Administrator.
  */
-@Mapper
-public interface MerchantRegisterConvert {
-
-    MerchantRegisterConvert INSTANCE = Mappers.getMapper(MerchantRegisterConvert.class);
+public class MerchantRegisterConvert {
 
     //将dto转成vo
-    MerchantRegisterVO dto2vo(MerchantDTO merchantDTO);
+    public static MerchantRegisterVO dto2vo(MerchantDTO merchantDTO) {
+        MerchantRegisterVO merchantRegisterVO = new MerchantRegisterVO();
+        BeanUtils.copyProperties(merchantDTO, merchantRegisterVO);
+        return merchantRegisterVO;
+    }
+
     //将vo转成dto
-    MerchantDTO vo2dto(MerchantRegisterVO merchantRegisterVO);
+    public static MerchantDTO vo2dto(MerchantRegisterVO merchantRegisterVO) {
+        MerchantDTO merchantDTO = new MerchantDTO();
+        BeanUtils.copyProperties(merchantRegisterVO, merchantDTO);
+        return merchantDTO;
+    }
 
 }

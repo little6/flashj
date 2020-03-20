@@ -1,11 +1,12 @@
 package com.flashj.merchant.service.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import lombok.Data;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+import java.io.Serializable;
 
 @Data
 @TableName("app")
@@ -42,6 +43,4 @@ public class App implements Serializable {
      */
     @TableField("NOTIFY_URL")
     private String notifyUrl;
-
-
 }

@@ -1,5 +1,5 @@
 server:
-  port: 9002 #启动端口 命令行注入
+  port: 9003 #启动端口 命令行注入
 
 nacos:
   server:
@@ -7,7 +7,15 @@ nacos:
 
 spring:
   application:
-    name: flashj-merchant-service
+    name: flashj-user-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql:///flashj_user?useSSL=false&serverTimezone=GMT%2B8
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 4
   main:
     allow-bean-definition-overriding: true # Spring Boot 2.1 需要设定
   cloud:
@@ -34,6 +42,9 @@ spring:
             refresh: true
             data-id: boot-mplus.yaml
             group: COMMON_GROUP # 通用配置组
+
+sms:
+  url: haha.com
 
 logging:
   config: classpath:log4j2.xml

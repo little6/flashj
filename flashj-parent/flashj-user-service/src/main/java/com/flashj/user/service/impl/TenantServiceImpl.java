@@ -96,7 +96,7 @@ public class TenantServiceImpl implements TenantService {
 				Tenant ten = createTenant(createTenantRequest);
 				//绑定租户和账号的关系，设置为管理员
 				bindTenantAccount(ten.getId(),accountId,true);
-				return TenantConvert.INSTANCE.entity2dto(ten);
+				return TenantConvert.entity2dto(ten);
 			}else{
 				return tenant;
 			}
@@ -121,7 +121,7 @@ public class TenantServiceImpl implements TenantService {
 			log.info("初始化套餐");
 			initBundle(tenant.getId(), createTenantRequest.getBundleCode());
 
-			return TenantConvert.INSTANCE.entity2dto(tenant);
+			return TenantConvert.entity2dto(tenant);
 		}
 	}
 
@@ -158,7 +158,7 @@ public class TenantServiceImpl implements TenantService {
 
 		initBundle(tenant.getId(), createTenantRequest.getBundleCode());
 
-		return TenantConvert.INSTANCE.entity2dto(tenant);
+		return TenantConvert.entity2dto(tenant);
 	}
 	/**
 	 * 删除租户
@@ -178,7 +178,7 @@ public class TenantServiceImpl implements TenantService {
 	@Override
 	public TenantDTO getTenant(Long id) {
 		Tenant entity = tenantMapper.selectById(id);
-		return TenantConvert.INSTANCE.entity2dto(entity);
+		return TenantConvert.entity2dto(entity);
 	}
 
 	/**
@@ -208,7 +208,7 @@ public class TenantServiceImpl implements TenantService {
 		QueryWrapper<Bundle> qw = new QueryWrapper<>();
 		qw.lambda().eq(Bundle::getTenantTypeCode,tenantType).eq(Bundle::getInitialize,0);
 		List<Bundle> bundles = bundleMapper.selectList(qw);
-		List<BundleDTO> dtoList = BundleConvert.INSTANCE.entitylist2dto(bundles);
+		List<BundleDTO> dtoList = BundleConvert.entitylist2dto(bundles);
 		return dtoList;
 	}
 
@@ -223,7 +223,7 @@ public class TenantServiceImpl implements TenantService {
 		qw.lambda().eq(Bundle::getCode,bundleCode);
 		Bundle entity = bundleMapper.selectOne(qw);
 		//Bundle bundle = bundleMapper.selectBundleByCode(bundleCode);
-		return BundleConvert.INSTANCE.entity2dto(entity);
+		return BundleConvert.entity2dto(entity);
 	}
 
 	/**
@@ -233,7 +233,7 @@ public class TenantServiceImpl implements TenantService {
 	@Override
 	public List<BundleDTO> queryAllBundle() {
 		List<Bundle> bundles = bundleMapper.selectList(null);
-		return BundleConvert.INSTANCE.entitylist2dto(bundles);
+		return BundleConvert.entitylist2dto(bundles);
 	}
 
 	/**
@@ -288,7 +288,7 @@ public class TenantServiceImpl implements TenantService {
              ]*/
 			//处理角色权限json（角色和权限的code），为租户绑定角色和权限
 			List<RoleDTO> roleDTOList = JSONObject.parseArray(ability, RoleDTO.class);
-			List<AuthorizationRole> roles = AuthorizationRoleConvert.INSTANCE.dtolist2entity(roleDTOList);
+			List<AuthorizationRole> roles = AuthorizationRoleConvert.dtolist2entity(roleDTOList);
 			List<String> rCodes = new ArrayList<>();//构建该套餐中的角色集合
 			roles.forEach(role -> rCodes.add(role.getCode()));
 
@@ -320,7 +320,7 @@ public class TenantServiceImpl implements TenantService {
 	 */
 	@Override
 	public void createBundle(BundleDTO bundleDTO) {
-		Bundle bundle = BundleConvert.INSTANCE.dto2entity(bundleDTO);
+		Bundle bundle = BundleConvert.dto2entity(bundleDTO);
 		bundleMapper.insert(bundle);
 	}
 
@@ -330,7 +330,7 @@ public class TenantServiceImpl implements TenantService {
 	 */
 	@Override
 	public void modifyBundle(BundleDTO bundleDTO) {
-		Bundle bundle = BundleConvert.INSTANCE.dto2entity(bundleDTO);
+		Bundle bundle = BundleConvert.dto2entity(bundleDTO);
 		bundleMapper.updateById(bundle);
 	}
 
@@ -412,7 +412,7 @@ public class TenantServiceImpl implements TenantService {
 		account.setMobile(mobile);
 		accountMapper.insert(account);
 
-		return AccountConvert.INSTANCE.entity2dto(account);
+		return AccountConvert.entity2dto(account);
 	}
 
 
@@ -517,7 +517,7 @@ public class TenantServiceImpl implements TenantService {
 		QueryWrapper<Account> qw = new  QueryWrapper<>();
 		qw.lambda().eq(Account::getUsername, username);
 		Account account = accountMapper.selectOne(qw);
-		return AccountConvert.INSTANCE.entity2dto(account);
+		return AccountConvert.entity2dto(account);
 	}
 
 	/**
@@ -530,7 +530,7 @@ public class TenantServiceImpl implements TenantService {
 		QueryWrapper<Account> qw = new  QueryWrapper<>();
 		qw.lambda().eq(Account::getMobile,mobile);
 		Account account = accountMapper.selectOne(qw);
-		return AccountConvert.INSTANCE.entity2dto(account);
+		return AccountConvert.entity2dto(account);
 	}
 
 	/**
@@ -747,7 +747,7 @@ public class TenantServiceImpl implements TenantService {
 
 		ResourceApplication resourceApplication = resourceApplicationMapper.selectOne(queryWrapper);
 
-		return ResourceApplicationConvert.INSTANCE.entity2dto(resourceApplication);
+		return ResourceApplicationConvert.entity2dto(resourceApplication);
 	}
 
 	@Override

@@ -1,12 +1,13 @@
 package com.flashj.merchant.service.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import lombok.Data;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @TableName("staff")
@@ -67,6 +68,5 @@ public class Staff implements Serializable {
      */
     @TableField("STAFF_STATUS")
     private Boolean staffStatus;
-
 
 }

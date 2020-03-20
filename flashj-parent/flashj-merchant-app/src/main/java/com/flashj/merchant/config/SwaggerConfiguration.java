@@ -13,7 +13,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@ConditionalOnProperty(prefix = "swagger",value = {"enable"},havingValue = "true")
+@ConditionalOnProperty(prefix = "swagger", value = {"enable"}, havingValue = "true")
 @EnableSwagger2
 public class SwaggerConfiguration {
 
@@ -23,21 +23,20 @@ public class SwaggerConfiguration {
                 .apiInfo(buildApiInfo())
                 .select()
                 // 要扫描的API(Controller)基础包
-                .apis(RequestHandlerSelectors.basePackage("com.shanjupay.merchant.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.flashj.merchant.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     /**
-     * @param
      * @return springfox.documentation.service.ApiInfo
      * @Title: 构建API基本信息
      * @methodName: buildApiInfo
      */
     private ApiInfo buildApiInfo() {
-        Contact contact = new Contact("开发者","","");
+        Contact contact = new Contact("开发者", "", "");
         return new ApiInfoBuilder()
-                .title("闪聚支付-商户应用API文档")
+                .title("Flashj-商户应用API文档")
                 .description("")
                 .contact(contact)
                 .version("1.0.0").build();

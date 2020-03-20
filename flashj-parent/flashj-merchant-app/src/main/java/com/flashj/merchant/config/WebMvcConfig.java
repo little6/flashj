@@ -4,10 +4,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * @author Administrator
- * @version 1.0
- **/
 @Component
 public class WebMvcConfig implements WebMvcConfigurer {
     /**

@@ -8,14 +8,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * 菜单
- * </p>
- *
- *
- * @since 2019-08-13
- */
 @Data
 @TableName("resource_button")
 public class ResourceButton implements Serializable {

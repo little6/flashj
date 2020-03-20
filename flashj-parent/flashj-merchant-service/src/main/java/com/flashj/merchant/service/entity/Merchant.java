@@ -91,6 +91,4 @@ public class Merchant implements Serializable {
      */
     @TableField("TENANT_ID")
     private Long tenantId;
-
-
 }

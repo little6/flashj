@@ -29,7 +29,7 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public MenuDTO queryMenu(Long id) {
         ResourceMenu resourceMenu = resourceMenuMapper.selectById(id);
-        MenuDTO menuDTO = ResourceMenuConvert.INSTANCE.entity2dto(resourceMenu);
+        MenuDTO menuDTO = ResourceMenuConvert.entity2dto(resourceMenu);
         return menuDTO;
     }
 
@@ -42,7 +42,7 @@ public class MenuServiceImpl implements MenuService {
     public List<MenuDTO> queryMenuByApplicationCode(String applicationCode) {
         List<ResourceMenu> resourceMenus = resourceMenuMapper.selectList(new QueryWrapper<ResourceMenu>().lambda()
                 .eq(ResourceMenu::getApplicationCode, applicationCode));
-        List<MenuDTO> menuDTOS = ResourceMenuConvert.INSTANCE.entitylist2dto(resourceMenus);
+        List<MenuDTO> menuDTOS = ResourceMenuConvert.entitylist2dto(resourceMenus);
         return menuDTOS;
     }
 
@@ -71,7 +71,7 @@ public class MenuServiceImpl implements MenuService {
         List<String> privilege= Arrays.asList(privileges);
         List<ResourceMenu> resourceMenus = resourceMenuMapper.selectList(new QueryWrapper<ResourceMenu>().lambda()
                 .in(ResourceMenu::getPrivilegeCode, privilege));
-        List<MenuDTO> menuDTOS = ResourceMenuConvert.INSTANCE.entitylist2dto(resourceMenus);
+        List<MenuDTO> menuDTOS = ResourceMenuConvert.entitylist2dto(resourceMenus);
         return menuDTOS;
     }
 }

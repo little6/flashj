@@ -3,19 +3,27 @@ package com.flashj.user.convert;
 
 import com.flashj.user.dto.tenant.AccountRoleDTO;
 import com.flashj.user.entity.AccountRole;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper
-public interface AccountRoleConvert {
+public class AccountRoleConvert {
 
-    AccountRoleConvert INSTANCE = Mappers.getMapper(AccountRoleConvert.class);
+    public static AccountRoleDTO entity2dto(AccountRole entity) {
+        AccountRoleDTO accountRoleDTO = new AccountRoleDTO();
+        BeanUtils.copyProperties(entity, accountRoleDTO);
+        return accountRoleDTO;
+    }
 
-    AccountRoleDTO entity2dto(AccountRole entity);
+    public static AccountRole dto2entity(AccountRoleDTO dto) {
+        AccountRole accountRole = new AccountRole();
+        BeanUtils.copyProperties(dto, accountRole);
+        return accountRole;
+    }
 
-    AccountRole dto2entity(AccountRoleDTO dto);
+    public static List<AccountRoleDTO> listentity2dto(List<AccountRole> accountRoles) {
+        return accountRoles.parallelStream().map(AccountRoleConvert::entity2dto).collect(Collectors.toList());
+    }
 
-    List<AccountRoleDTO> listentity2dto(List<AccountRole> app);
 }

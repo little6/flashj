@@ -15,8 +15,6 @@ import java.util.List;
  * 账号-角色关系 Mapper 接口
  * </p>
  *
- *
- * @since 2019-08-13
  */
 @Repository
 public interface AccountRoleMapper extends BaseMapper<AccountRole> {
