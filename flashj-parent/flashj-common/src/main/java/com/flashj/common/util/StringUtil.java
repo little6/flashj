@@ -1,6 +1,5 @@
 package com.flashj.common.util;
 
-
 import java.io.File;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;

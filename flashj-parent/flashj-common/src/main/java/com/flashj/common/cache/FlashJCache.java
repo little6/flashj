@@ -9,7 +9,6 @@ public interface FlashJCache {
      */
     Set<String> getKeys();
 
-
     Set<String> getKeys(String pattern);
 
     /**
@@ -71,8 +70,6 @@ public interface FlashJCache {
      * @param value
      */
     void append(String key, String value);
-
-
 
 
     /**

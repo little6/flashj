@@ -1,4 +1,4 @@
-package com.flashj.merchant.common.util;
+package com.flashj.merchant.app.common.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

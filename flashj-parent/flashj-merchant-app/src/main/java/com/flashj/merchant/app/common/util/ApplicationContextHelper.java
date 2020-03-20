@@ -1,4 +1,4 @@
-package com.flashj.merchant.common.util;
+package com.flashj.merchant.app.common.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

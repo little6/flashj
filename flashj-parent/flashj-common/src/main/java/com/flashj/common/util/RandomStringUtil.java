@@ -1,5 +1,7 @@
 package com.flashj.common.util;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.util.Random;
 
 /**
@@ -42,11 +44,11 @@ public class RandomStringUtil {
      *
      * @param args
      */
-    //public static void main(String[] args) {
-    //    System.out.println(RandomStringUtil.getRandomString(5));
-    //    String  str2 = RandomStringUtils.random(12,"123456789");
-    //    System.out.println(str2);
-    //}
+    public static void main(String[] args) {
+        System.out.println(RandomStringUtil.getRandomString(5));
+        String str2 = RandomStringUtils.random(12, "123456789");
+        System.out.println(str2);
+    }
 
 
 }

@@ -17,7 +17,7 @@ public class RandomUuidUtil {
         return uuidStr;
     }
 
-    //public static void main(String[] args) {
-    //    System.out.println(getUUID());
-    //}
+    public static void main(String[] args) {
+        System.out.println(getUUID());
+    }
 }

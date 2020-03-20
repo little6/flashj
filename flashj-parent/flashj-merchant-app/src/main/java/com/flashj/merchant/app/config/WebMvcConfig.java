@@ -1,4 +1,4 @@
-package com.flashj.merchant.config;
+package com.flashj.merchant.app.config;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

@@ -1,5 +1,7 @@
 package com.flashj.common.util;
 
+import cn.hutool.json.JSONUtil;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,13 +10,14 @@ import java.util.Set;
 public class MapStringConvertUtil {
 
     //参数类型是Map<String,String> 支付需要用string的参数。
+
     /**
-     *
      * map转str
+     *
      * @param map
      * @return
      */
-    public static String getMapToString(Map<String,String> map){
+    public static String getMapToString(Map<String, String> map) {
         Set<String> keySet = map.keySet();
         //将set集合转换为数组
         String[] keyArray = keySet.toArray(new String[keySet.size()]);
@@ -27,22 +30,22 @@ public class MapStringConvertUtil {
             if (map.get(keyArray[i]).trim().length() > 0) {
                 sb.append(keyArray[i]).append(":").append(map.get(keyArray[i]).trim());
             }
-            if(i != keyArray.length-1){
+            if (i != keyArray.length - 1) {
                 sb.append(",");
             }
         }
-        String s = sb.toString();
-        return s;
+        return sb.toString();
     }
 
     /**
      * String转Map
+     *
      * @param str
      * @return
      */
-    public static Map<String,String> getStringToMap(String str){
+    public static Map<String, String> getStringToMap(String str) {
         //判断str是否有值
-        if(null == str || "".equals(str)){
+        if (null == str || "".equals(str)) {
             return null;
         }
         //根据&截取
@@ -50,19 +53,46 @@ public class MapStringConvertUtil {
         //设置HashMap长度
         int mapLength = strings.length;
         //判断hashMap的长度是否是2的幂。
-        if((strings.length % 2) != 0){
-            mapLength = mapLength+1;
+        if ((strings.length % 2) != 0) {
+            mapLength = mapLength + 1;
         }
 
-        Map<String,String> map = new HashMap<>(mapLength);
+        Map<String, String> map = new HashMap<>(mapLength);
         //循环加入map集合
         for (int i = 0; i < strings.length; i++) {
             //截取一组字符串
             String[] strArray = strings[i].split(":");
             //strArray[0]为KEY  strArray[1]为值
-            map.put(strArray[0],strArray[1]);
+            map.put(strArray[0], strArray[1]);
         }
         return map;
+    }
+
+    public static void main(String[] args) {
+        String str = "{\n" +
+                "\"name\":\"miv\",\n" +
+                "\"age\":20,\n" +
+                "\"passwd\":33\n" +
+                "}";
+        String s = JSONUtil.formatJsonStr(str);
+        System.out.println(s);
+
+        Map<String, String> stringToMap = getStringToMap(s);
+        System.out.println(stringToMap);
+
+        System.out.println("=============");
+
+        Map<String, String> map = new HashMap<>();
+        map.put("name", "哈哈");
+        map.put("age", "23");
+        map.put("passwd", "iu");
+
+        System.out.println(map);
+
+        System.out.println(getMapToString(map));
+
+        String ss = "age:23,name:哈哈,passwd:iu";
+        System.out.println(getStringToMap(ss));
     }
 
 }

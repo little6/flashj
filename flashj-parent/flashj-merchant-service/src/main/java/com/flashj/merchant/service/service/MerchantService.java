@@ -6,10 +6,23 @@ import com.flashj.merchant.service.dto.MerchantDTO;
 import com.flashj.merchant.service.dto.StaffDTO;
 import com.flashj.merchant.service.dto.StoreDTO;
 
+import java.util.List;
+
 public interface MerchantService {
 
-    //根据 id查询商户
+    /**
+     * 根据 商户id查询商户
+     *
+     * @param id 商户id
+     * @return
+     */
     MerchantDTO queryMerchantById(Long id);
+
+    /**
+     * 查询商户列表
+     * @return List<MerchantDTO>
+     */
+    List<MerchantDTO> queryMerchants();
 
     /**
      * 根据租户id查询商户的信息

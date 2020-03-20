@@ -1,12 +1,12 @@
-package com.flashj.merchant.common.filter;
+package com.flashj.merchant.app.common.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.flashj.common.util.EncryptUtil;
 import com.flashj.common.util.StringUtil;
-import com.flashj.merchant.common.util.LoginUser;
-import com.flashj.merchant.common.util.SecurityUtil;
+import com.flashj.merchant.app.common.util.LoginUser;
+import com.flashj.merchant.app.common.util.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -109,7 +109,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     public void responseMessage(int code, String desc, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         // 由于全局异常处理器无法捕获filter中的异常信息 利用此map将异常信息直接响应到前端
-        Map<String, Object> exceptionMap = new HashMap<String, Object>();
+        Map<String, Object> exceptionMap = new HashMap<>();
         exceptionMap.put("code", code);
         exceptionMap.put("desc", desc);
         httpServletResponse.setCharacterEncoding("UTF-8");

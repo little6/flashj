@@ -1,4 +1,4 @@
-package com.flashj.merchant.config;
+package com.flashj.merchant.app.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +23,7 @@ public class SwaggerConfiguration {
                 .apiInfo(buildApiInfo())
                 .select()
                 // 要扫描的API(Controller)基础包
-                .apis(RequestHandlerSelectors.basePackage("com.flashj.merchant.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.flashj.merchant.app.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

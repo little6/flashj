@@ -56,11 +56,18 @@ public class MerchantServiceImpl implements MerchantService {
     @Override
     public MerchantDTO queryMerchantById(Long id) {
         Merchant merchant = merchantMapper.selectById(id);
-//        MerchantDTO merchantDTO = new MerchantDTO();
-//        merchantDTO.setId(merchant.getId());
-//        merchantDTO.setMerchantName(merchant.getMerchantName());
-        //....
         return MerchantConvert.entity2dto(merchant);
+    }
+
+    /**
+     * 查询商户列表
+     *
+     * @return List<MerchantDTO>
+     */
+    @Override
+    public List<MerchantDTO> queryMerchants() {
+        List<Merchant> merchants = merchantMapper.selectList(null);
+        return MerchantConvert.entityList2dtoList(merchants);
     }
 
     /**

@@ -7,7 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@ApiModel(value="MerchantDTO", description="MerchantDTO对象")
+@ApiModel(value="MerchantDTO", description="商户DTO对象")
 public class MerchantDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,7 +45,6 @@ public class MerchantDTO implements Serializable {
     @ApiModelProperty(value = "用户密码")
     private String password;
 
-
     @ApiModelProperty(value = "联系人地址")
     private String contactsAddress;
 
@@ -54,6 +53,4 @@ public class MerchantDTO implements Serializable {
 
     @ApiModelProperty(value = "租户ID,关联统一用户")
     private Long tenantId;
-
-
 }

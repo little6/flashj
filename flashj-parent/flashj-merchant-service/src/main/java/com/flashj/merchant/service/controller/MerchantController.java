@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /*
 @author lybbo
 */
@@ -24,7 +26,14 @@ public class MerchantController {
     @ApiOperation(value = "根据id查询商户")
     @GetMapping("/query/merchant/{id}")
     public MerchantDTO queryMerchantById(@PathVariable("id") Long id) {
+        log.info("this query merchant by id: {}", id);
         return merchantService.queryMerchantById(id);
+    }
+
+    @ApiOperation(value = "查询所有商户列表")
+    @GetMapping("/query/merchants")
+    public List<MerchantDTO> queryAllMerchant() {
+        return merchantService.queryMerchants();
     }
 
     @ApiOperation(value = "根据租户id查询商户的信息")
@@ -62,17 +71,17 @@ public class MerchantController {
 
     @ApiOperation(value = "将员工设置为门店的管理员")
     void bindStaffToStore(Long storeId, Long staffId) throws BusinessException {
-        merchantService.bindStaffToStore(storeId,staffId);
+        merchantService.bindStaffToStore(storeId, staffId);
     }
 
     @ApiOperation(value = "门店列表的查询")
     @GetMapping("/query/store/list")
     PageVO<StoreDTO> queryStoreByPage(StoreDTO storeDTO, Integer pageNo, Integer pageSize) {
-        return merchantService.queryStoreByPage(storeDTO,pageNo,pageSize);
+        return merchantService.queryStoreByPage(storeDTO, pageNo, pageSize);
     }
 
     @ApiOperation(value = "校验门店是否属于商户")
     Boolean queryStoreInMerchant(Long storeId, Long merchantId) {
-        return merchantService.queryStoreInMerchant(storeId,merchantId);
+        return merchantService.queryStoreInMerchant(storeId, merchantId);
     }
 }

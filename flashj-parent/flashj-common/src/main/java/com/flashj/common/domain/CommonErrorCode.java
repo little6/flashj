@@ -93,7 +93,6 @@ public enum CommonErrorCode implements ErrorCode {
 	 */
 	UNKNOWN(999999,"未知错误");
 
-
 	private int code;
 	private String desc;
 
@@ -109,7 +108,6 @@ public enum CommonErrorCode implements ErrorCode {
 		this.code = code;
 		this.desc = desc;
 	}
-
 
 	public static CommonErrorCode setErrorCode(int code) {
 		for (CommonErrorCode errorCode : CommonErrorCode.values()) {

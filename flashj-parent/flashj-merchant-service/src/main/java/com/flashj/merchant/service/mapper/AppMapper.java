@@ -2,7 +2,6 @@ package com.flashj.merchant.service.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.flashj.merchant.service.entity.App;
-import org.mapstruct.Mapper;
 
 /**
  * <p>
@@ -11,7 +10,6 @@ import org.mapstruct.Mapper;
  *
  * @author lybbo
  */
-@Mapper
 public interface AppMapper extends BaseMapper<App> {
 
 }

@@ -1,7 +1,7 @@
-package com.flashj.merchant.convert;
+package com.flashj.merchant.app.convert;
 
 import com.flashj.merchant.service.dto.MerchantDTO;
-import com.flashj.merchant.vo.MerchantRegisterVO;
+import com.flashj.merchant.app.vo.MerchantRegisterVO;
 import org.springframework.beans.BeanUtils;
 
 /**

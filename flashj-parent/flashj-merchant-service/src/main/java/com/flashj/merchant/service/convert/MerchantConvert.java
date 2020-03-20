@@ -1,17 +1,23 @@
 package com.flashj.merchant.service.convert;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.flashj.merchant.service.dto.MerchantDTO;
 import com.flashj.merchant.service.entity.Merchant;
+import com.google.common.collect.Lists;
 import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MerchantConvert {
 
     //把dto转换成entity
     public static Merchant dto2entity(MerchantDTO merchantDTO) {
+        if (Objects.isNull(merchantDTO)) {
+            return null;
+        }
         Merchant merchant = new Merchant();
         BeanUtils.copyProperties(merchantDTO, merchant);
         return merchant;
@@ -19,6 +25,9 @@ public class MerchantConvert {
 
     //把entity转换成dto
     public static MerchantDTO entity2dto(Merchant merchant) {
+        if (Objects.isNull(merchant)) {
+            return null;
+        }
         MerchantDTO merchantDTO = new MerchantDTO();
         BeanUtils.copyProperties(merchant, merchantDTO);
         return merchantDTO;
@@ -26,6 +35,9 @@ public class MerchantConvert {
 
     //list之间也可以转换，将entity的List转成MerchantDTO list
     public static List<MerchantDTO> entityList2dtoList(List<Merchant> merchants) {
+        if (CollectionUtil.isEmpty(merchants)) {
+            return Lists.newArrayList();
+        }
         return merchants.parallelStream().map(MerchantConvert::entity2dto).collect(Collectors.toList());
     }
 

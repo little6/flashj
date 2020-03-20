@@ -4,6 +4,7 @@ server:
 nacos:
   server:
     addr: 127.0.0.1:8848
+
 spring:
   cloud:
     nacos:
@@ -17,7 +18,8 @@ spring:
         namespace: 99593676-fcda-498f-ab3a-209af786bf6b
         group: FLASHJ_GROUP
         extension-configs:
-          - refresh: true
+          -
+            refresh: true
             data-id: flashj-common.yaml
             group: COMMON_GROUP
   application:

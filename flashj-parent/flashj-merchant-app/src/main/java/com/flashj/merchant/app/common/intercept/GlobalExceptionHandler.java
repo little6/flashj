@@ -1,4 +1,4 @@
-package com.flashj.merchant.common.intercept;
+package com.flashj.merchant.app.common.intercept;
 
 
 import com.flashj.common.domain.BusinessException;
@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 全局异常处理器
  *
- * @author Administrator
- * @version 1.0
  **/
 @ControllerAdvice//与@Exceptionhandler配合使用实现全局异常处理
 public class GlobalExceptionHandler {

@@ -8,15 +8,15 @@ import java.util.TreeMap;
 
 public class ParseURLPairUtil {
 
-    public static String parseURLPair(Object o) throws Exception{
+    public static String parseURLPair(Object o) throws Exception {
         Class<? extends Object> c = o.getClass();
         Field[] fields = c.getDeclaredFields();
-        Map<String, Object> map = new TreeMap<String, Object>();
+        Map<String, Object> map = new TreeMap<>();
         for (Field field : fields) {
             field.setAccessible(true);
             String name = field.getName();
             Object value = field.get(o);
-            if(value != null)
+            if (value != null)
                 map.put(name, value);
         }
         Set<Map.Entry<String, Object>> set = map.entrySet();
@@ -26,6 +26,10 @@ public class ParseURLPairUtil {
             Map.Entry<String, Object> e = it.next();
             sb.append(e.getKey()).append("=").append(e.getValue()).append("&");
         }
-        return sb.deleteCharAt(sb.length()-1).toString();
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println(parseURLPair("www.baidu.com?name=离开&age=90"));
     }
 }

@@ -3,7 +3,6 @@ package com.flashj.common.domain;
 public class PageRequestParams {
 	
 	private long startRow;
-	
 	private long limit;
 	
 	private PageRequestParams(Long startRow, Long limit){

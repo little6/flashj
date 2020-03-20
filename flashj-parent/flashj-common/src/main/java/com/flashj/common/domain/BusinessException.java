@@ -2,8 +2,6 @@ package com.flashj.common.domain;
 
 /**
  * 自定义的异常类型
- * @author Administrator
- * @version 1.0
  **/
 public class BusinessException extends RuntimeException {
 
