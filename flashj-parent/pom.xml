@@ -12,6 +12,7 @@
         <module>flashj-merchant-app</module>
         <module>flashj-merchant-service</module>
         <module>flashj-user-service</module>
+        <module>flashj-sms</module>
     </modules>
 
     <packaging>pom</packaging>
