@@ -10,6 +10,7 @@ import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 @SpringBootApplication(exclude = {RedisAutoConfiguration.class})
 @EnableDiscoveryClient
 @EnableFeignClients
+@EnableSwagger2
 public class MerchantBootApp {
     public static void main(String[] args) {
         SpringApplication.run(MerchantBootApp.class, args);

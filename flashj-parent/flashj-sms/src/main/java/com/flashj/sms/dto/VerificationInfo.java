@@ -3,13 +3,17 @@ package com.flashj.sms.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * 验证信息，客户端保存key，展示content
  */
 @Data
 @AllArgsConstructor
-public class VerificationInfo {
+@NoArgsConstructor
+public class VerificationInfo implements Serializable {
 
     private String key;
 

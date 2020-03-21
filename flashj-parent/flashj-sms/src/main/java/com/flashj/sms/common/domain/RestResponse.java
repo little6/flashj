@@ -6,9 +6,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 @JsonInclude(Include.NON_NULL)
 @ApiModel(value = "RestResponse<T>", description = "响应通用参数包装")
-public class RestResponse<T> {
+public class RestResponse<T> implements Serializable {
 
 	@ApiModelProperty("响应错误编码,0为正常")
 	private int code;

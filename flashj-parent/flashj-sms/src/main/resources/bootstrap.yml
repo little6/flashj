@@ -3,17 +3,33 @@ server:
   servlet:
     context-path: /sms
 
+nacos:
+  server:
+    addr: 127.0.0.1:8848
+
 spring:
   application:
     name: flashj-sms
-
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.server.addr}
+        cluster-name: DEFAULT
+        namespace: 99593676-fcda-498f-ab3a-209af786bf6b
+      config:
+        server-addr: ${nacos.server.addr}
+        file-extension: yaml
+        namespace: 99593676-fcda-498f-ab3a-209af786bf6b
+        group: FLASHJ_GROUP
+        extension-configs:
+          - refresh: true
+            data-id: flashj-common.yaml
+            group: COMMON_GROUP
   main:
     allow-bean-definition-overriding: true
-
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-
   redis:
     host: 192.168.87.141
     port: 6379
@@ -25,7 +41,6 @@ spring:
         max-active: 8
         max-wait: 10000
     timeout: 10000
-
 sms:
   qcloud:
     appId: 1400336270
